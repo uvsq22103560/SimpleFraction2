@@ -1,0 +1,326 @@
+# TD 1
+## Remarques préliminaires
+* Pour l'ensemble des TDs, vous créerez un compte individuel sur [github](https://github.com/) si vous n'en possédez pas déjà un.
+Vous nommerez ce compte de la façon suivante: `uvsq<MonNuméroÉtudiant>`.
+Par exemple, pour un étudiant de numéro *21601234*, le compte sera `uvsq21601234`.
+* Les commandes `git` sont à taper en ligne de commande dans un *shell*.
+* Vous pouvez utiliser l'IDE de votre choix.
+Sur le cartable numérique, [Eclipse](www.eclipse.org), [IntelliJ IDEA](http://www.jetbrains.com/idea/) et [Visual Studio Code](https://code.visualstudio.com/) sont installés.
+* Vous répondrez aux questions directement dans ce fichier en complétant les emplacements correspondants.
+Ajoutez ensuite ce fichier au dépôt `git`.
+
+## Partie I (à faire durant le TD) : découverte de `git`
+Dans cet exercice, vous créerez une classe `Fraction` représentant un nombre rationnel et une classe `Main` qui testera les méthodes de la classe `Fraction` **avec des assertions**.
+À chaque étape, consultez le statut des fichiers du projet ainsi que l'historique.
+
+1. Sur la forge, créez le dépôt (_repository_) `SimpleFraction`;
+En terme de *commits*, quelle différence constatez-vous entre cocher une (ou plusieurs) des cases *Initialize this repository with* et n'en cocher aucune ?
+    > 
+
+    *Pour la suite, ne cochez aucune de ces cases*.
+
+1. Localement, configurez `git` avec votre nom (`user.name`) et votre email (`user.email`);
+   ```bash
+    # Répondre ici 
+     git config --global user.name uvsq22103560
+	 git config --global user.email mansouryacine37@gmail.com
+
+
+    
+
+1. Initialisez le dépôt `git` local pour le projet;
+    ```bash
+    # Répondre ici
+     git init
+
+
+
+1. Créez la classe `Fraction` (vide pour le moment) et la classe `Main` (avec un simple affichage) dans le projet;
+Vérifiez que le projet compile et s'exécute dans l'IDE;
+Validez les changements;
+    ```bash
+    # Commandes pour valider les changements :
+	 git add ./src/fraction.java
+	 git commit -m "ajout d'une classe"
+	 git add ./src/Main.java
+	 git commit -m "ajout d'une classe"
+	
+	
+
+
+
+1. Ajoutez un constructeur et la méthode `toString` à la classe `Fraction` et modifiez la classe `Main` en conséquence;
+Validez les changements;
+    ```Java
+    // Code pour tester toString
+    public class Main {
+    public static void main (String[] args) {
+        System.out.println("hello world");
+
+
+
+        fraction f = new fraction (56,8);
+        System.out.println(f.toString());
+
+
+     }
+    }
+
+
+
+1. Publiez vos modifications sur le dépôt distant;
+Vous utiliserez le protocole `https` pour cela;
+Vérifiez avec le navigateur;
+    ```bash
+    # Commandes pour publier les modifications
+     git add ./src/
+	 git branch -M Main
+	 git remote add origine https://github.com/uvsq22103560/uvsq22103560.git
+	 git commit -m "first"
+	 git push -u origine Main
+1. Sur la forge, ajoutez un fichier de documentation `README.md`.
+Quelle syntaxe est utilisée pour ce fichier ?
+    > Markdown.mk
+
+
+
+1. Récupérez localement les modifications effectuées sur la forge.
+    ```bash
+    # Répondre ici
+    git pull
+
+
+
+1. Ajoutez les répertoires et fichiers issus de la compilation aux fichiers ignorés par `git` (fichier `.gitignore`);
+    ```bash
+    # Copier ici le contenu de `.gitignore`
+    #Default ignored files
+	/shelf/
+	/.idea/workspace.xml
+	/out/
+
+
+
+1. Retirez les fichiers de configuration de l'IDE du projet;
+    ```bash
+    # Répondre ici
+    ```
+    Ajoutez-les aux fichiers ignorés par `git`.
+    ```bash
+    # Copier ici les modifications de `.gitignore`
+    #Default ignored files
+	/shelf/
+	/.idea/workspace.xml
+	/out/
+	/.idea/
+
+
+
+
+1. Configurez l'accès par clé publique/clé privée à la forge (cf. [Connecting to GitHub with SSH](https://docs.github.com/en/authentication/connecting-to-github-with-ssh)).
+    > Expliquez la procédure de façon synthétique
+## Partie II (à faire à la maison) : révisions et perfectionnement *shell* et *IDE*
+### Maîtriser le *shell* de commandes
+L'objectif de cet exercice est de vous faire réviser/découvrir les commandes de base du *shell* de votre machine.
+Vous pouvez répondre en utilisant le shell de votre choix (*bash*, *Powershell*, …).
+Pour répondre à ces questions, vous devez effectuer les recherches documentaires adéquates (livre, web, …).
+
+1. Quel OS et quel shell de commande utilisez-vous ?
+    > windows 10
+	pour un premier essaie je vais opter pour linux bash 
+1. Quelle commande permet d'obtenir de l'aide ?
+Donnez un exemple.
+    ```bash
+    # help 
+	help command
+1. Donnez la ou les commandes shell permettant de
+    1. afficher les fichiers d'un répertoire triés par taille (taille affichée lisiblement)
+        ```bash
+        # ls -las/repertoire/
+        ```
+    1. compter le nombre de ligne d'un fichier
+        ```bash
+        # wc -l fichier.txt
+        ```
+    1. afficher les lignes du fichier `Main.java` contenant la chaîne `uneVariable`
+        ```bash
+        # Rgrep -i "uneVariable" Main.java
+        ```
+    1. afficher récursivement les fichiers `.java` contenant la chaîne `uneVariable`
+        ```bash
+        # grep --include=\*.java -rnw '/repertoire/' -e "uneVariable"
+        ```
+    1. trouver les fichiers (pas les répertoires) nommés `README.md` dans une arborescence de répertoires
+        ```bash
+        # find /path -name README.md
+        ```
+    1. afficher les différences entre deux fichiers textes
+        ```bash
+        # diff fichierA.txt fichierB.txt
+        ```
+1. Expliquez en une ou deux phrases le rôle de ces commandes et dans quel contexte elles peuvent être utiles pour un développeur.
+    * `ssh`
+        > cette commande etablie une connex securisée a distance entre 2 machines
+    * `screen`/`tmux`
+        > permet d'ouvrir plusieurs terminaux dans une meme console 
+    * `curl`/[HTTPie](https://httpie.org/)
+        >  remplacer simplement l'utilisation des commandes cURL et wget tout en ajoutant une petite touche bien agréable
+    * [jq](https://stedolan.github.io/jq/)
+        >  pour extraire/manipuler des données
+
+### Découverte de votre *IDE*
+Dans cet exercice, vous expliquerez en quelques phrases comment vous réalisez les actions ci-dessous dans votre IDE.
+Vous pouvez choisir l'IDE/éditeur de texte de votre choix.
+Pour réaliser cette exercice, vous devez bien évidemment vous reporter à la documentations de l'IDE ([IntelliJ IDEA](https://www.jetbrains.com/help/idea/discover-intellij-idea.html#developer-tools), [Visual Studio Code](https://code.visualstudio.com/docs), [Eclipse](https://help.eclipse.org/2020-09/index.jsp), …).
+
+1. Quels IDE ou éditeurs de texte utilisez-vous pour le développement Java ?
+    > Inellij IDEA
+	
+
+    Pour la suite, ne considérez que l'un de vos choix.
+	
+1. Comment vérifier/définir que l'encodage utilisé est *UTF-8* ?
+    > Avec le fichier ouvert dans l'éditeur, sélectionnez Fichier |
+	Propriétés du fichier | 
+	Codage de fichier dans le menu principal ou cliquez sur le widget Codage de fichier dans la barre d'état.
+
+
+1. Comment choisir le JDK à utiliser dans un projet ?
+    > Dans le menu principal, sélectionnez Fichier | Structure du projet | Paramètres de la plate-forme | SDK .
+Pour ajouter un SDK, cliquez sur le bouton Ajouter, sélectionnez le SDK nécessaire et spécifiez son répertoire
+ personnel dans la boîte de dialogue qui s'ouvre.
+Uniquement pour les JDK : si vous n'avez pas le JDK nécessaire sur votre ordinateur, sélectionnez Télécharger le JDK . 
+Dans la boîte de dialogue suivante, spécifiez le fournisseur et la version du JDK, 
+modifiez le chemin d'installation si nécessaire, puis cliquez sur Télécharger .
+
+
+1. Comment préciser la version Java des sources dans un projet ?
+    > Pour utiliser un JDK particulier, il faut indiquer à Intellij IDEA
+	qu'il doit compiler et gérer nos sources avec le JDK souhaité.
+Pour cela, allez dans la section "Project", dans "Project SDK" selectionnez le JDK voulu
+et dans "Project Language Level" selectionnez la version du JDK.
+
+
+1. Comment ajouter une bibliothèque externe dans un projet ?
+    > Copiez jar dans le répertoire libs de l'application (vous pouvez créer le répertoire s'il n'y est pas)
+Actualiser le projet pour que les bibliothèques apparaissent dans la structure 
+(clic droit sur le niveau supérieur du projet, actualiser / synchroniser)
+Développez les bibliothèques et faites un clic droit sur le pot
+Sélectionnez "Ajouter en tant que bibliothèque
+
+
+
+1. Comment reformater un fichier source Java ?
+    > Ouvrez votre fichier dans l'éditeur et appuyez sur Ctrl+Alt+Shift+Lou dans la fenêtre de l'outil Projet , cliquez avec le bouton droit sur le fichier 
+	et sélectionnez Reformater le code .
+
+Continuez à appuyer Shiftet sélectionnez des fichiers supplémentaires pour un reformatage de groupe.
+
+Dans la boîte de dialogue qui s'ouvre, si vous en avez besoin, sélectionnez les options de reformatage suivantes :
+
+Optimiser les importations : sélectionnez cette option si vous souhaitez supprimer les importations inutilisées, 
+ajouter celles qui manquent ou organiser les déclarations d'importation.
+
+Pour plus d'informations, reportez-vous à la section Optimiser les importations .
+
+Réorganiser les entrées : sélectionnez cette option si vous devez réorganiser votre code en fonction 
+des règles d'agencement spécifiées dans les paramètres de style de code.
+
+Nettoyage du code : sélectionnez cette option pour exécuter les inspections de nettoyage du code.
+Cliquez sur OK .
+
+
+
+1. Comment trouver la déclaration d'une variable ou méthode ?
+ > Ctrl + B (Aller à la déclaration), pour voir ce que fait une méthode, où une variable est déclarée, etc. 
+Ceci est presque toujours suivi de Ctrl + Alt + Left pour revenir à ma place
+ ( Ctrl + Alt + Right travaille pour "aller de l'avant" à nouveau).
+
+
+
+1. Comment insérer un bloc de code prédéfini (*snippet*) ?
+    >Tapez l'abréviation requise dans l'éditeur et appuyez sur Tab.
+Appuyez sur Ctrl+Jet choisissez l'extrait correspondant. Pour affiner la recherche,
+ commencez à saisir l'abréviation, puis sélectionnez-la dans la liste de complétion .
+
+
+
+
+
+1. Comment renommer une classe dans l'ensemble du projet ?
+> Répondre ici
+Dans l'éditeur, sélectionnez un élément que vous souhaitez renommer. Si vous devez renommer un fichier,
+ sélectionnez-en un dans la fenêtre de l'outil Projet .
+
+Appuyez sur Shift+F6ou dans le menu principal, sélectionnez Refactor | Renommer .
+Lorsque vous appelez l' Shift+F6action de changement de nom , IntelliJ IDEA s'affiche l'icône Renommer 
+dans les commentaires et les chaîneset à l'icône Renommer dans les occurrences de textecôté de l'élément en surbrillance.
+
+Renommer la variable
+Vous pouvez appuyer sur Tabpour ouvrir le menu contextuel et sélectionner les options de renommage supplémentaires.
+
+Options de renommage supplémentaires
+Si vous voulez voir la boîte de dialogue Renommer avec plus d'options, cliquez sur le lien Plus d'options ou appuyez sur Shift+F6.
+
+Ouvrez ( Shift+F6) la boîte de dialogue Renommer . Saisissez un nouveau nom pour l'élément pour activer les boutons Aperçu et Refactoriser .
+
+La boîte de dialogue Renommer
+Vous pouvez spécifier des options supplémentaires. Par exemple, spécifiez où rechercher les occurrences d'élément, ou quoi d'autre renommer.
+ Vous pouvez également spécifier une portée pour la refactorisation.
+
+Cliquez sur Aperçu pour voir les modifications potentielles ou cliquez sur Refactoriser .
+Lorsque vous cliquez sur Aperçu , IntelliJ IDEA ouvre la fenêtre de l'outil Rechercher avec les résultats des utilisations trouvées 
+où vous pouvez vérifier les résultats et confirmer la refactorisation ( Do Refactor ).
+
+La prochaine fois que vous invoquerez la refactorisation Renommer , IntelliJ IDEA mémorisera les options
+ que vous avez spécifiées dans la boîte de dialogue Renommer .
+
+Vous ne pouvez pas renommer le répertoire du projet .idea car IntelliJ IDEA lit 
+toujours les fichiers du projet à partir du répertoire avec ce nom exact.
+
+Exemples?
+Renommez une classe MyClass.
+
+Avant	Après
+public class MyClass {
+    // some code here
+}
+
+    public void myMethod() {
+        MyClass myClass = new MyClass();
+    }
+Copié !
+public class YourClass {
+    // some code here
+}
+
+    public void myMethod() {
+        YourClass yourClass = new YourClass();
+    }
+
+
+
+
+
+1. Comment exécuter le programme en lui passant un paramètre en ligne de commande ?
+    >  Exécuter->Modifier les Configurations.
+	   Sélectionnez Une Application.
+	   Fournir principal nom de la classe et les arguments de ligne de commande et à appliquer.
+	   Exécuter
+
+
+
+
+1. Comment déboguer le programme en visualisant le contenu d'une ou plusieurs variables ?
+    > Il y a plusieurs façons de démarrer le débogueur :
+
+Vous pouvez cliquer sur l'icône d'exécution dans la zone de la gouttière et sélectionner l'option Debug ;
+Vous pouvez appeler des actions contextuelles sur la classe ou la méthode principale en utilisant Alt+Entrée et en choisissant l'action Debug ;
+Vous pouvez également le lancer à partir du menu d'exécution Run ou en appuyant sur Maj+F9.
+
+
+
+
+
+1. Quels paramètres ou fonctionnalités vous semblent particulièrement importants/utiles pour le développement Java ?
+    > Répondre ici
